@@ -1,15 +1,14 @@
 import sys
-from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from random import randint
 from PyQt5.QtGui import QPainter, QColor
+from UI import UI_Form
 
 
-class MyWidget(QMainWindow):
+class MyWidget(QMainWindow, UI_Form):
     def __init__(self):
         super().__init__()
-        self.setGeometry(300, 300, 300, 300)
-        uic.loadUi('UI.ui', self)
+        self.setupUi(self)
         self.do_paint = False
         self.pushButton.clicked.connect(self.paint)
 
@@ -26,7 +25,7 @@ class MyWidget(QMainWindow):
         self.repaint()
 
     def ellips(self, qp):
-        qp.setBrush(QColor(255, 255, 0))
+        qp.setBrush(QColor(randint(0, 255), randint(0, 255), randint(0, 255)))
         rec = randint(0, 300)
         x = randint(0, 300)
         y = randint(0, 300)
